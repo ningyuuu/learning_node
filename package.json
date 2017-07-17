@@ -1,0 +1,27 @@
+{
+  "name": "learning_node",
+  "version": "1.0.0",
+  "description": "Personal app for learning node",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangandai/learning_node.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "andai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wangandai/learning_node/issues"
+  },
+  "homepage": "https://github.com/wangandai/learning_node#readme"
+}
