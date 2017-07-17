@@ -1,10 +1,41 @@
 <html>
 <head>
 <script src = "lib/socket.io.js"></script>
+<style type="text/css">
+  td {
+    width: 10px;
+    height: 10px;
+  }
+</style>
 </head>
 <body>
   <script>
     var socket = io('http://localhost:3001');
+    function conquer(x,y){
+      socket.emit("conquer", {x: x, y:y});
+    }
+
+    socket.emit('getMap');
+    socket.on('heresTheMap', function (response){
+      var map = response.map;
+      var html = '<table>';
+      for (var y = 0; y < map[0].length; y++){
+        html += '<tr>';
+        for (var x = 0; x < map.length; x++){
+          var cellColor = map[x][y] ? map[x][y] : 'green';
+          html += '<td id = "cell'+x+'-'+y+'" style = "background-color: '+cellColor+'" onclick = "conquer('+x+', '+y+')"></td>';
+        }
+        html += '</tr>';
+      }
+      html += '</table>';
+      document.getElementById('playArea').innerHTML = html;
+    });
+
+    socket.on('conquered', function(conquerInfo){
+      document.getElementById('cell'+conquerInfo.x+"-"+conquerInfo.y).style.backgroundColor = conquerInfo.color;
+    });
   </script>
+
+  <div id='playArea'></div>
 </body>
 </html>
